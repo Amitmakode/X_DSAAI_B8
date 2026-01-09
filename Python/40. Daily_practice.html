@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30 Days Python Practice Questions</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const PythonPracticeQuestions = () => {
+            const [expandedDay, setExpandedDay] = useState(null);
+            const [completedDays, setCompletedDays] = useState(new Set());
+
+            const questionsData = [
+                {
+                    day: 1,
+                    topic: "Data Types, Variables, Operators, Typecasting",
+                    questions: [
+                        "What are the basic data types in Python? Write a program to check the type of variables: 10, 3.14, 'Hello', True",
+                        "Create variables to store your name, age, height, and whether you are a student. Print all of them.",
+                        "Write a program to swap two numbers without using a third variable.",
+                        "What is the difference between '/' and '//' operators? Demonstrate with examples.",
+                        "Calculate the area of a circle with radius 5 using the formula πr². Use appropriate data types.",
+                        "Write a program to convert temperature from Celsius to Fahrenheit using the formula: F = (C × 9/5) + 32",
+                        "What is the output of: 10 + 5 * 2? Explain operator precedence.",
+                        "Create a program that takes two numbers and prints their sum, difference, product, and quotient.",
+                        "Convert a string '123' to an integer and add 50 to it. Print the result.",
+                        "What happens when you try to add an integer and a string? How can you fix it?",
+                        "Write a program to check if a number is even or odd using the modulus operator.",
+                        "Demonstrate the use of comparison operators (==, !=, >, <, >=, <=) with examples.",
+                        "What is type casting? Convert 45.8 to integer and '100' to float.",
+                        "Write a program to calculate the percentage of a student who scored 85 out of 100.",
+                        "Use logical operators (and, or, not) to check if a number is between 10 and 20.",
+                        "Create variables with multiple assignment: a, b, c = 1, 2, 3. Print them.",
+                        "What is the difference between = and ==? Explain with examples.",
+                        "Write a program to find the remainder when 17 is divided by 5.",
+                        "Convert a float 3.99 to int. What happens to the decimal part?",
+                        "Create a program that takes user input for two numbers and prints their multiplication."
+                    ]
+                },
+                {
+                    day: 2,
+                    topic: "String Formatting, Special Characters, Inbuilt Functions",
+                    questions: [
+                        "What are escape sequences? Demonstrate \\n, \\t, \\\\, and \\' in a program.",
+                        "Create a string 'Python Programming' and print its length using len() function.",
+                        "Write a program to print: He said, \"Python is awesome!\"",
+                        "Use format() method to print: 'My name is John and I am 25 years old'.",
+                        "What is the difference between single quotes, double quotes, and triple quotes in Python?",
+                        "Convert a string 'hello' to uppercase and 'WORLD' to lowercase.",
+                        "Create a multi-line string using triple quotes and print it.",
+                        "Write a program to print a path: C:\\Users\\Documents\\file.txt",
+                        "Use f-strings to print: 'The sum of 5 and 3 is 8'.",
+                        "What does the str() function do? Convert number 100 to string.",
+                        "Print 'Python' in the center of a 20-character width using string formatting.",
+                        "Create a raw string to print: C:\\new\\folder\\file.txt",
+                        "Use .format() to print: 'Item: Apple, Price: 50, Quantity: 10'",
+                        "What is the output of print('Hello' + 'World')? Explain string concatenation.",
+                        "Write a program to print numbers 1 to 5 with tab spaces between them.",
+                        "Convert integer 42 to string and concatenate with ' is the answer'.",
+                        "Use ord() and chr() functions to print ASCII value of 'A' and character of 65.",
+                        "Print 'Python\\nProgramming' so that both words appear on the same line.",
+                        "Create a formatted string showing: Name: [15 chars wide], Age: [5 chars wide]",
+                        "What is the type() function? Check the type of 'Hello', 100, and 3.14."
+                    ]
+                },
+                {
+                    day: 3,
+                    topic: "String Operations and Functions",
+                    questions: [
+                        "Write a program to access the first, last, and middle character of string 'Python'.",
+                        "What is string slicing? Get 'thon' from 'Python' using slicing.",
+                        "Reverse a string 'Hello' using slicing.",
+                        "Check if the substring 'gram' exists in 'Programming' using the 'in' operator.",
+                        "Replace all occurrences of 'a' with 'o' in the string 'banana'.",
+                        "Split the string 'apple,banana,orange' into a list using split() method.",
+                        "Join a list ['Python', 'is', 'fun'] into a single string with spaces.",
+                        "Remove leading and trailing spaces from '  Hello World  ' using strip().",
+                        "Count how many times 'l' appears in 'Hello World'.",
+                        "Find the index of 'World' in the string 'Hello World'.",
+                        "Check if a string 'Python123' is alphanumeric using isalnum().",
+                        "Convert 'hello world' to title case using title() method.",
+                        "Check if a string 'Python' starts with 'Py' and ends with 'on'.",
+                        "What is the difference between find() and index() methods? Demonstrate both.",
+                        "Create a string 'abcabcabc' and replace only the first occurrence of 'abc' with 'xyz'.",
+                        "Write a program to check if a string contains only alphabets using isalpha().",
+                        "Extract every second character from the string 'Programming'.",
+                        "Center align the string 'Python' in 20 characters using center() method.",
+                        "Check if the string '12345' contains only digits using isdigit().",
+                        "Capitalize only the first letter of 'python programming' using capitalize()."
+                    ]
+                },
+                {
+                    day: 4,
+                    topic: "List Operations and Functions",
+                    questions: [
+                        "Create a list of 5 fruits and print the first and last element.",
+                        "Add 'grape' to the end of the list ['apple', 'banana', 'orange'] using append().",
+                        "Insert 'mango' at index 1 in the list ['apple', 'banana', 'orange'].",
+                        "Remove 'banana' from the list ['apple', 'banana', 'orange', 'banana'] using remove().",
+                        "What is the difference between remove(), pop(), and del in lists? Demonstrate each.",
+                        "Sort a list [5, 2, 8, 1, 9] in ascending and descending order.",
+                        "Reverse a list [1, 2, 3, 4, 5] using reverse() method.",
+                        "Find the length of a list using len() function.",
+                        "Create a list of numbers and find the maximum and minimum values.",
+                        "Count how many times 3 appears in the list [1, 3, 5, 3, 7, 3].",
+                        "Copy a list using copy() method and verify they are different objects.",
+                        "Extend list1 = [1, 2] with list2 = [3, 4] using extend() method.",
+                        "Access elements from index 1 to 3 in list [10, 20, 30, 40, 50] using slicing.",
+                        "Create a list of squares of numbers from 1 to 5 (without list comprehension).",
+                        "Clear all elements from a list using clear() method.",
+                        "Find the index of element 'Python' in list ['Java', 'Python', 'C++'].",
+                        "What happens when you try to access an index that doesn't exist in a list?",
+                        "Create a nested list [[1, 2], [3, 4], [5, 6]] and access element 4.",
+                        "Concatenate two lists [1, 2, 3] and [4, 5, 6] using the + operator.",
+                        "Create a list with 5 identical elements using the * operator."
+                    ]
+                },
+                {
+                    day: 5,
+                    topic: "Tuple Operations and Functions",
+                    questions: [
+                        "Create a tuple of 4 numbers and access the second element.",
+                        "What is the difference between a list and a tuple? Explain mutability.",
+                        "Try to change an element in a tuple. What error do you get?",
+                        "Find the length of tuple (10, 20, 30, 40, 50) using len().",
+                        "Count how many times 5 appears in tuple (5, 10, 5, 15, 5).",
+                        "Find the index of element 30 in tuple (10, 20, 30, 40).",
+                        "Create a tuple with single element. How is it different from (5)?",
+                        "Concatenate two tuples (1, 2, 3) and (4, 5, 6).",
+                        "Repeat a tuple (1, 2) three times using the * operator.",
+                        "Unpack a tuple (10, 20, 30) into three variables a, b, c.",
+                        "Slice a tuple (0, 1, 2, 3, 4, 5) to get elements from index 2 to 4.",
+                        "Find the maximum and minimum values in tuple (45, 12, 78, 23, 56).",
+                        "Check if element 50 exists in tuple (10, 20, 30, 40) using 'in' operator.",
+                        "Convert a list [1, 2, 3] to tuple and vice versa.",
+                        "Create a nested tuple ((1, 2), (3, 4), (5, 6)) and access element 5.",
+                        "What happens when you try to use append() or remove() on a tuple?",
+                        "Sort a tuple (5, 2, 8, 1) by converting it to a list and back.",
+                        "Create a tuple of mixed data types (int, float, string, boolean).",
+                        "Compare two tuples (1, 2, 3) and (1, 2, 4) using comparison operators.",
+                        "Delete an entire tuple using del keyword. Can you delete a single element?"
+                    ]
+                },
+                {
+                    day: 6,
+                    topic: "Set and Dictionary Operations",
+                    questions: [
+                        "Create a set {1, 2, 3, 4, 5} and add element 6 using add() method.",
+                        "Try to add duplicate element 3 to set {1, 2, 3}. What happens?",
+                        "Find the union of sets {1, 2, 3} and {3, 4, 5}.",
+                        "Find the intersection of sets {1, 2, 3, 4} and {3, 4, 5, 6}.",
+                        "Find the difference between sets {1, 2, 3, 4} and {3, 4, 5, 6}.",
+                        "Convert a list [1, 2, 2, 3, 3, 4] to set. What happens to duplicates?",
+                        "Check if element 25 exists in set {10, 20, 30, 40} using 'in' operator.",
+                        "Remove element 4 from set {1, 2, 3, 4, 5} using discard() method.",
+                        "Create a dictionary with keys 'name', 'age', 'city' and appropriate values.",
+                        "Access the value of key 'name' from dictionary {'name': 'John', 'age': 25}.",
+                        "Add a new key-value pair 'email': 'john@example.com' to an existing dictionary.",
+                        "Update the value of key 'age' from 25 to 26 in a dictionary.",
+                        "Get all keys from dictionary {'a': 1, 'b': 2, 'c': 3} using keys() method.",
+                        "Get all values from dictionary using values() method.",
+                        "Use get() method to retrieve value of a key that may not exist.",
+                        "Check if key 'name' exists in a dictionary using 'in' operator.",
+                        "Create a dictionary from two lists: keys = ['a', 'b', 'c'], values = [1, 2, 3].",
+                        "Remove key 'city' from dictionary using pop() method.",
+                        "Create a nested dictionary representing a student with name, age, and marks.",
+                        "Find the length of a dictionary using len() function."
+                    ]
+                },
+                {
+                    day: 7,
+                    topic: "If-Elif-Else Statements",
+                    questions: [
+                        "Write a program to check if a number is positive, negative, or zero.",
+                        "Check if a person is eligible to vote (age >= 18).",
+                        "Find the largest of three numbers using if-elif-else.",
+                        "Check if a number is divisible by both 3 and 5.",
+                        "Write a program to check if a year is a leap year or not.",
+                        "Determine the grade of a student based on marks: A(>=90), B(>=80), C(>=70), D(>=60), F(<60).",
+                        "Check if a character entered by user is a vowel or consonant.",
+                        "Write a program to check if a number is even or odd.",
+                        "Find the maximum of two numbers using if-else.",
+                        "Check if a triangle is valid (sum of any two sides > third side).",
+                        "Determine if a person is child(<13), teenager(13-19), adult(20-59), or senior(>=60).",
+                        "Check if a number is within the range 10 to 50 (inclusive).",
+                        "Write a nested if-else to check if a number is positive and even.",
+                        "Check if a string is empty or not.",
+                        "Determine ticket price based on age: child(<12): 50, adult(12-60): 100, senior(>60): 70.",
+                        "Check if username is 'admin' and password is '12345' for login.",
+                        "Write a program to find the smallest of three numbers.",
+                        "Check if a number is divisible by 3 or 5 but not both.",
+                        "Determine the type of triangle (equilateral, isosceles, scalene) based on sides.",
+                        "Check if a person can donate blood (age 18-65 and weight > 50kg)."
+                    ]
+                },
+                {
+                    day: 8,
+                    topic: "Loops - Part 1 (For Loop)",
+                    questions: [
+                        "Print numbers from 1 to 10 using a for loop.",
+                        "Print all even numbers between 1 and 20 using for loop.",
+                        "Print the multiplication table of 5 using a for loop.",
+                        "Calculate the sum of first 10 natural numbers using a for loop.",
+                        "Print all elements of a list ['apple', 'banana', 'orange'] using for loop.",
+                        "Print the squares of numbers from 1 to 5 using a for loop.",
+                        "Use a for loop with range() to print numbers from 5 to 15.",
+                        "Print all characters in a string 'Python' using a for loop.",
+                        "Find the sum of all even numbers between 1 and 50 using for loop.",
+                        "Print numbers from 10 to 1 in reverse using for loop with range().",
+                        "Create a list of numbers and find their sum using for loop.",
+                        "Count the number of vowels in a string using for loop.",
+                        "Print all odd numbers from 1 to 20 using for loop.",
+                        "Use for loop with enumerate() to print index and value of list elements.",
+                        "Print multiplication tables from 1 to 5 using nested for loops.",
+                        "Find the factorial of a number using for loop.",
+                        "Create a pattern: print stars in increasing order (1, 2, 3, 4, 5 stars per line).",
+                        "Iterate through a dictionary and print key-value pairs using for loop.",
+                        "Find the largest number in a list using for loop.",
+                        "Use for loop to create a new list with squares of numbers from original list."
+                    ]
+                },
+                {
+                    day: 9,
+                    topic: "Loops - Part 2 (While Loop and Loop Control)",
+                    questions: [
+                        "Print numbers from 1 to 10 using a while loop.",
+                        "Print numbers from 10 to 1 using a while loop.",
+                        "Calculate the sum of first 10 natural numbers using while loop.",
+                        "Count the number of digits in a number using a while loop.",
+                        "Find the factorial of a number using a while loop.",
+                        "Reverse a number using a while loop (e.g., 12345 becomes 54321).",
+                        "Print the Fibonacci series up to 10 terms using a while loop.",
+                        "Find the sum of digits of a number using a while loop.",
+                        "Keep asking user for input until they enter 'quit' using while loop.",
+                        "Check if a number is prime using a while loop.",
+                        "Use break statement to exit loop when number 5 is found in a list.",
+                        "Use continue statement to skip odd numbers and print only even numbers from 1 to 10.",
+                        "Print all numbers from 1 to 100, but stop when reaching 50 using break.",
+                        "Skip multiples of 3 between 1 to 20 using continue statement.",
+                        "Create a simple menu-driven program using while loop (1.Add 2.Subtract 3.Exit).",
+                        "Use nested loops with break to exit from outer loop.",
+                        "Find the first number divisible by 7 between 1 to 100 using while and break.",
+                        "Print pattern using nested while loops (pyramid of stars).",
+                        "Use else clause with while loop and demonstrate its execution.",
+                        "Create an infinite loop and then break it based on a condition."
+                    ]
+                },
+                {
+                    day: 10,
+                    topic: "User Defined Functions",
+                    questions: [
+                        "Define a function to greet a user by name and call it.",
+                        "Create a function that takes two numbers and returns their sum.",
+                        "Write a function to check if a number is even or odd and return True/False.",
+                        "Define a function with default parameter value (e.g., greet with default name 'Guest').",
+                        "Create a function that returns multiple values (quotient and remainder of division).",
+                        "Write a function to find the maximum of three numbers.",
+                        "Define a function that takes a list and returns its length.",
+                        "Create a function to calculate the area of a rectangle with length and width as parameters.",
+                        "Write a function that accepts variable number of arguments (*args) and prints them.",
+                        "Create a function with keyword arguments (**kwargs) and print them.",
+                        "Define a recursive function to calculate factorial of a number.",
+                        "Write a function to check if a string is palindrome or not.",
+                        "Create a function that converts Celsius to Fahrenheit.",
+                        "Define a function to count vowels in a given string.",
+                        "Write a function that takes a list and returns sum of all elements.",
+                        "Create a function to generate Fibonacci series up to n terms.",
+                        "Define a function with both positional and keyword arguments.",
+                        "Write a function that reverses a string and returns it.",
+                        "Create a function to check if a number is prime or not.",
+                        "Define a function that takes a number and returns its square and cube."
+                    ]
+                },
+                {
+                    day: 11,
+                    topic: "Lambda Functions and List Comprehension",
+                    questions: [
+                        "Create a lambda function to add 10 to a number and test it.",
+                        "Write a lambda function to find the square of a number.",
+                        "Use lambda with filter() to get even numbers from a list [1, 2, 3, 4, 5, 6].",
+                        "Use lambda with map() to square all numbers in a list [1, 2, 3, 4, 5].",
+                        "Create a lambda function to check if a number is greater than 10.",
+                        "Use list comprehension to create a list of squares from 1 to 10.",
+                        "Create a list of even numbers from 1 to 20 using list comprehension.",
+                        "Use list comprehension to convert all strings in a list to uppercase.",
+                        "Write a list comprehension with if condition to get numbers divisible by 3 from 1 to 30.",
+                        "Create a lambda function to find maximum of two numbers.",
+                        "Use lambda with sorted() to sort a list of tuples by second element.",
+                        "Write a list comprehension to create a list of tuples (number, square) for 1 to 5.",
+                        "Use lambda with reduce() to find product of all numbers in a list.",
+                        "Create a list comprehension with nested loops to generate pairs (i, j) for i in range(3) and j in range(3).",
+                        "Write a lambda function that takes two arguments and returns their product.",
+                        "Use list comprehension to extract all vowels from a string.",
+                        "Create a lambda function to check if a string length is greater than 5.",
+                        "Use list comprehension to flatten a nested list [[1, 2], [3, 4], [5, 6]].",
+                        "Write a list comprehension with if-else to label numbers as 'even' or 'odd'.",
+                        "Use lambda with filter() and map() together to square all even numbers in a list."
+                    ]
+                },
+                {
+                    day: 12,
+                    topic: "File Handling, OS and Sys Module",
+                    questions: [
+                        "Write a program to create a text file and write 'Hello, World!' to it.",
+                        "Read and print the contents of a text file.",
+                        "Open a file in append mode and add a new line of text.",
+                        "What is the difference between 'r', 'w', 'a', and 'r+' modes?",
+                        "Use with statement to open and read a file. What's the advantage?",
+                        "Write a program to count the number of lines in a text file.",
+                        "Write a program to copy contents from one file to another.",
+                        "Handle FileNotFoundError exception when opening non-existent file.",
+                        "Write a list of strings to a file using writelines().",
+                        "Read all lines from a file into a list using readlines().",
+                        "Import os module and print current working directory using os.getcwd().",
+                        "Create a new directory using os.mkdir().",
+                        "List all files in current directory using os.listdir().",
+                        "Check if a file exists using os.path.exists().",
+                        "Get the file size using os.path.getsize().",
+                        "Rename a file using os.rename().",
+                        "Delete a file using os.remove().",
+                        "Import sys module and print Python version using sys.version.",
+                        "Print command line arguments using sys.argv.",
+                        "Join two paths using os.path.join()."
+                    ]
+                },
+                {
+                    day: 13,
+                    topic: "Exception Handling and Logging",
+                    questions: [
+                        "Write a program with try-except to handle division by zero error.",
+                        "Handle ValueError when converting invalid string to integer.",
+                        "Use try-except-else block. When does the else block execute?",
+                        "Use try-except-finally block. When does finally execute?",
+                        "Handle multiple exceptions (ValueError, ZeroDivisionError) in single program.",
+                        "Raise a custom exception using raise keyword when age is negative.",
+                        "Handle FileNotFoundError when opening a file that doesn't exist.",
+                        "Use except Exception as e to print the error message.",
+                        "Create a custom exception class named 'InvalidAgeError'.",
+                        "Handle IndexError when accessing list with invalid index.",
+                        "Use try-except to handle KeyError in dictionary.",
+                        "Import logging module and configure basic logging.",
+                        "Write different log levels: debug, info, warning, error, critical.",
+                        "Log messages to a file instead of console.",
+                        "Create a logger with specific name using logging.getLogger().",
+                        "Format log messages to include timestamp and log level.",
+                        "Handle TypeError when performing operations on incompatible types.",
+                        "Use assert statement to validate input and handle AssertionError.",
+                        "Write a program that handles NameError (undefined variable).",
+                        "Create a nested try-except block for multiple error scenarios."
+                    ]
+                },
+                {
+                    day: 14,
+                    topic: "OOPs Concepts - Part 1 (Classes and Objects)",
+                    questions: [
+                        "Create a class 'Car' with attributes brand and model. Create an object.",
+                        "Define a class with __init__ method (constructor) to initialize attributes.",
+                        "Create a method in class to display object information.",
+                        "What is self in Python? Explain with an example.",
+                        "Create a class 'Student' with attributes name, age and method to display details.",
+                        "Define a class with multiple methods and call them using object.",
+                        "Create a class 'Rectangle' with methods to calculate area and perimeter.",
+                        "Implement a class 'BankAccount' with deposit and withdraw methods.",
+                        "Create a class 'Book' with attributes title, author, price and display method.",
+                        "Define a class 'Circle' with radius attribute and method to calculate area.",
+                        "Create multiple objects of same class with different attribute values.",
+                        "Write a class 'Employee' with attributes name, salary and method to give raise.",
+                        "Create a class 'Calculator' with methods for add, subtract, multiply, divide.",
+                        "Define a class 'Person' with attributes and method to check if adult (age>=18).",
+                        "Create a class 'Temperature' with method to convert Celsius to Fahrenheit.",
+                        "Write a class 'Counter' with method to increment and decrement a value.",
+                        "Create a class 'Product' with attributes name, price, quantity and total cost method.",
+                        "Define a class without __init__ and create object with attributes added later.",
+                        "Create a class 'Time' with hours, minutes and method to display in HH:MM format.",
+                        "Write a class 'Box' with length, width, height and method to calculate volume."
+                    ]
+                },
+                {
+                    day: 15,
+                    topic: "OOPs Concepts - Part 2 (Inheritance and Encapsulation)",
+                    questions: [
+                        "What is inheritance? Create parent class 'Animal' and child class 'Dog'.",
+                        "Override a method in child class that exists in parent class.",
+                        "Use super() to call parent class constructor from child class.",
+                        "Create a class hierarchy: Vehicle -> Car -> SportsCar with inheritance.",
+                        "Implement inheritance with 'Person' as parent and 'Student' as child class.",
+                        "Create parent class 'Shape' and child classes 'Circle' and 'Rectangle'.",
+                        "What is method overriding? Demonstrate with an example.",
+                        "Create 'Employee' parent class and 'Manager' child class with additional attributes.",
+                        "Use super() to call parent class method from child class method.",
+                        "Implement multiple inheritance with two parent classes.",
+                        "What is encapsulation? Create a class with private attributes using __.",
+                        "Create private attribute and try to access it directly. What happens?",
+                        "Implement getter and setter methods for a private attribute.",
+                        "Create a class 'BankAccount' with private balance and public methods.",
+                        "What is the difference between public, protected (_ prefix) and private (__)?",
+                        "Create a class with private method and call it from public method.",
+                        "Implement a class with data hiding using private attributes.",
+                        "Create property decorator to make getter and setter methods.",
+                        "Write a class with validation in setter method to ensure valid data.",
+                        "Demonstrate that private attributes can still be accessed using name mangling."
+                    ]
+                },
+                {
+                    day: 16,
+                    topic: "Datetime Module and Regular Expressions",
+                    questions: [
+                        "Import datetime and print current date and time.",
+                        "Print only current date using datetime.date.today().",
+                        "Create a specific date object for January 1, 2025.",
+                        "Calculate difference between two dates using timedelta.",
+                        "Add 10 days to current date using timedelta.",
+                        "Format date as 'DD-MM-YYYY' using strftime().",
+                        "Parse string '2025-01-01' to datetime using strptime().",
+                        "Calculate your age in days from birth date.",
+                        "Get current timestamp using datetime.now().timestamp().",
+                        "Find number of days between two dates.",
+                        "Import re module and search for 'Python' in a string.",
+                        "Use re.match() to check if string starts with 'Hello'.",
+                        "Find all digits in string using re.findall() with pattern r'\\d+'.",
+                        "Validate email format using regex pattern.",
+                        "Extract all numbers from string 'Order 123 costs $45'.",
+                        "Use re.sub() to replace all digits with 'X'.",
+                        "Check if string contains only alphabets using pattern r'^[a-zA-Z]+.",
+                        "Split string by comma using re.split().",
+                        "Write regex pattern to match phone numbers XXX-XXX-XXXX.",
+                        "Match any word starting with 'P' using pattern r'\\bP\\w+'."
+                    ]
+                },
+                {
+                    day: 17,
+                    topic: "NumPy Basics",
+                    questions: [
+                        "Import numpy and create a 1D array [1, 2, 3, 4, 5].",
+                        "Create a 2D array (matrix) 3x3 filled with zeros.",
+                        "Create an array of ones with shape (2, 4).",
+                        "Create array using np.arange() from 0 to 10 with step 2.",
+                        "Create array using np.linspace() with 5 values between 0 and 1.",
+                        "Find shape and dimensions of array using .shape and .ndim.",
+                        "Reshape 1D array [1,2,3,4,5,6] to 2x3 matrix.",
+                        "Access elements from 2D array using indexing (row, column).",
+                        "Slice 2D array to get first 2 rows.",
+                        "Perform element-wise addition of two arrays.",
+                        "Multiply two arrays element-wise.",
+                        "Calculate mean, median, std of array [1,2,3,4,5].",
+                        "Find maximum and minimum values in array.",
+                        "Create 3x3 identity matrix using np.eye().",
+                        "Transpose a 2D array using .T.",
+                        "Flatten 2D array to 1D using .flatten().",
+                        "Create random array of 10 elements using np.random.rand().",
+                        "Sort array in ascending order using np.sort().",
+                        "Find unique elements in array using np.unique().",
+                        "Create array with values from 0 to 9 using np.arange()."
+                    ]
+                },
+                {
+                    day: 18,
+                    topic: "Pandas Basics - Part 1 (Series and DataFrame)",
+                    questions: [
+                        "Import pandas and create a Series with data [10, 20, 30, 40, 50].",
+                        "Create a Series with custom index labels ['a', 'b', 'c', 'd', 'e'].",
+                        "Create DataFrame from dictionary with columns 'Name', 'Age', 'City'.",
+                        "Create DataFrame from list of lists with column names.",
+                        "Display first 5 rows using head() and last 5 rows using tail().",
+                        "Get basic information about DataFrame using info() method.",
+                        "Get statistical summary using describe() method.",
+                        "Access a specific column using df['column_name'].",
+                        "Access multiple columns from DataFrame.",
+                        "Get shape of DataFrame using .shape attribute.",
+                        "Get column names using .columns attribute.",
+                        "Get data types of columns using .dtypes.",
+                        "Create DataFrame with 5 rows of student data (name, marks, grade).",
+                        "Add a new column to existing DataFrame.",
+                        "Access first row using iloc[0].",
+                        "Access row by label using loc['label'].",
+                        "Check for missing values using isnull().sum().",
+                        "Get unique values in a column using unique().",
+                        "Count unique values using nunique().",
+                        "Get value counts for categorical column using value_counts()."
+                    ]
+                },
+                {
+                    day: 19,
+                    topic: "Pandas Basics - Part 2 (Data Selection and Filtering)",
+                    questions: [
+                        "Select rows where Age > 25 using boolean indexing.",
+                        "Select rows where multiple conditions are True using & operator.",
+                        "Select rows where City is 'Mumbai' or 'Delhi' using | operator.",
+                        "Filter DataFrame to get rows where marks are between 70 and 90.",
+                        "Select specific columns and rows together using loc.",
+                        "Select data using iloc with row and column numbers.",
+                        "Get rows where string column contains specific substring using str.contains().",
+                        "Filter rows where column value is in a given list using isin().",
+                        "Select rows where column is not null using notnull().",
+                        "Get top 5 rows with highest values using nlargest().",
+                        "Get bottom 5 rows with lowest values using nsmallest().",
+                        "Select rows based on index values using loc.",
+                        "Select every 2nd row from DataFrame using iloc[::2].",
+                        "Filter DataFrame and create a copy using .copy().",
+                        "Query DataFrame using query() method with string expression.",
+                        "Select rows where value starts with specific letter using str.startswith().",
+                        "Filter numeric column where values are greater than mean.",
+                        "Select rows excluding certain values using ~ operator.",
+                        "Get random sample of rows using sample() method.",
+                        "Select rows by position range using iloc[start:end]."
+                    ]
+                },
+                {
+                    day: 20,
+                    topic: "Pandas Basics - Part 3 (Data Manipulation for Data Science)",
+                    questions: [
+                        "Sort DataFrame by a column using sort_values().",
+                        "Sort DataFrame by multiple columns with different order.",
+                        "Drop a column using drop() method with axis=1.",
+                        "Drop rows with missing values using dropna().",
+                        "Fill missing values with mean using fillna(df['col'].mean()).",
+                        "Fill missing values with forward fill method.",
+                        "Replace specific values in column using replace().",
+                        "Rename columns using rename() method.",
+                        "Change data type of column using astype().",
+                        "Group data by column and calculate mean using groupby().mean().",
+                        "Group by multiple columns and aggregate using multiple functions.",
+                        "Apply custom function to column using apply().",
+                        "Create new column based on condition using np.where() or apply().",
+                        "Concatenate two DataFrames vertically using pd.concat().",
+                        "Merge two DataFrames using merge() on common column.",
+                        "Pivot table to reshape data using pivot_table().",
+                        "Reset index of DataFrame using reset_index().",
+                        "Set a column as index using set_index().",
+                        "Remove duplicate rows based on specific columns using drop_duplicates().",
+                        "Export DataFrame to CSV file using to_csv()."
+                    ]
+                },
+                {
+                    day: 21,
+                    topic: "Matplotlib and Seaborn",
+                    questions: [
+                        "Import matplotlib.pyplot and create simple line plot.",
+                        "Add title, x-label, and y-label to plot.",
+                        "Create bar chart for categories and values.",
+                        "Create scatter plot using plt.scatter().",
+                        "Create histogram for data distribution using plt.hist().",
+                        "Create pie chart with labels using plt.pie().",
+                        "Add legend to plot using plt.legend().",
+                        "Save plot to file using plt.savefig().",
+                        "Create subplots (2 plots side by side) using plt.subplot().",
+                        "Change figure size using plt.figure(figsize=(width, height)).",
+                        "Import seaborn and create line plot using sns.lineplot().",
+                        "Load built-in dataset 'tips' using sns.load_dataset('tips').",
+                        "Create scatter plot using sns.scatterplot().",
+                        "Create bar plot showing average values using sns.barplot().",
+                        "Create count plot using sns.countplot().",
+                        "Create box plot using sns.boxplot().",
+                        "Create heatmap for correlation matrix using sns.heatmap().",
+                        "Set seaborn style using sns.set_style('darkgrid').",
+                        "Add hue parameter to color by category.",
+                        "Create distribution plot using sns.histplot()."
+                    ]
+                },
+                {
+                    day: 22,
+                    topic: "Exploratory Data Analysis (EDA)",
+                    questions: [
+                        "Load dataset and check shape, columns, and data types.",
+                        "Display first 10 and last 10 rows of dataset.",
+                        "Get statistical summary using describe().",
+                        "Check for missing values and count them per column.",
+                        "Calculate percentage of missing values for each column.",
+                        "Find duplicate rows using duplicated().",
+                        "Get value counts for categorical column.",
+                        "Find correlation between numerical columns using corr().",
+                        "Create histogram for all numerical columns.",
+                        "Create box plots to identify outliers.",
+                        "Group data by category and calculate mean.",
+                        "Find unique values in categorical columns.",
+                        "Visualize missing data using heatmap.",
+                        "Analyze relationship between two variables using scatter plot.",
+                        "Create cross-tabulation between two categorical variables.",
+                        "Identify columns with zero variance.",
+                        "Calculate skewness of numerical columns.",
+                        "Find top 5 most frequent categories in a column.",
+                        "Create pair plot to see relationships between multiple variables.",
+                        "Analyze distribution of target variable for classification problem."
+                    ]
+                },
+                {
+                    day: 23,
+                    topic: "Data Cleaning",
+                    questions: [
+                        "Remove rows with any missing values using dropna().",
+                        "Fill missing values with mean using fillna().",
+                        "Fill missing values with median for numerical columns.",
+                        "Fill missing values with mode for categorical columns.",
+                        "Forward fill missing values using method='ffill'.",
+                        "Remove duplicate rows using drop_duplicates().",
+                        "Replace specific values with another value using replace().",
+                        "Rename columns to follow naming conventions.",
+                        "Convert data type of column using astype().",
+                        "Strip whitespace from string columns using str.strip().",
+                        "Convert string column to lowercase using str.lower().",
+                        "Handle outliers by capping at 95th percentile.",
+                        "Remove rows where specific column has missing values.",
+                        "Replace negative values with zero.",
+                        "Split column with multiple values into separate columns.",
+                        "Remove special characters from string column.",
+                        "Convert date strings to datetime format using pd.to_datetime().",
+                        "Reset index after removing rows using reset_index().",
+                        "Standardize column names (lowercase, no spaces, underscores).",
+                        "Remove columns with more than 50% missing values."
+                    ]
+                },
+                {
+                    day: 24,
+                    topic: "Data Preprocessing",
+                    questions: [
+                        "Standardize numerical features using StandardScaler from sklearn.",
+                        "Normalize features to range [0,1] using MinMaxScaler.",
+                        "Encode categorical variable using Label Encoding.",
+                        "Encode categorical variable using One-Hot Encoding with pd.get_dummies().",
+                        "Split dataset into features (X) and target (y).",
+                        "Split data into train and test sets using train_test_split().",
+                        "Check class distribution in target variable.",
+                        "Create new feature by combining existing features.",
+                        "Bin continuous variable into categories using pd.cut().",
+                        "Log transform skewed feature to make it normal.",
+                        "Extract year, month, day from datetime column.",
+                        "Create dummy variables for categorical column.",
+                        "Remove highly correlated features (correlation > 0.9).",
+                        "Handle categorical missing values by creating 'Unknown' category.",
+                        "Scale only training data and transform test data separately.",
+                        "Convert ordinal data to numerical (Low=1, Medium=2, High=3).",
+                        "Create interaction features by multiplying columns.",
+                        "Group rare categories into 'Other' category.",
+                        "Apply different preprocessing to different column types.",
+                        "Save preprocessed data to new CSV file."
+                    ]
+                }
+                
+            ];
+
+            const toggleDay = (day) => {
+                setExpandedDay(expandedDay === day ? null : day);
+            };
+
+            const toggleComplete = (day) => {
+                const newCompleted = new Set(completedDays);
+                if (newCompleted.has(day)) {
+                    newCompleted.delete(day);
+                } else {
+                    newCompleted.add(day);
+                }
+                setCompletedDays(newCompleted);
+            };
+
+            const ChevronDown = () => (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            );
+
+            const ChevronUp = () => (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+            );
+
+            const CheckCircle = () => (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            );
+
+            return (
+                <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="bg-white rounded-lg shadow-lg p-8 mb-6">
+                            <h1 className="text-4xl font-bold text-indigo-700 mb-2">30 Days Python Practice Questions</h1>
+                            <p className="text-gray-600">Basic to Moderate Level Questions for Students</p>
+                            <div className="mt-4 bg-indigo-50 p-4 rounded-lg">
+                                <p className="text-sm text-indigo-800">
+                                    <strong>Progress:</strong> {completedDays.size} / 30 days completed
+                                </p>
+                                <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                                    <div 
+                                        className="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" 
+                                        style={{width: `${(completedDays.size / 30) * 100}%`}}
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4">
+                            {questionsData.map((dayData) => (
+                                <div key={dayData.day} className="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <div 
+                                        className="flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors"
+                                        onClick={() => toggleDay(dayData.day)}
+                                    >
+                                        <div className="flex items-center space-x-4 flex-1">
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    toggleComplete(dayData.day);
+                                                }}
+                                                className={`p-2 rounded-full transition-colors ${
+                                                    completedDays.has(dayData.day) 
+                                                        ? 'bg-green-100 text-green-600' 
+                                                        : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
+                                                }`}
+                                            >
+                                                <CheckCircle />
+                                            </button>
+                                            <div>
+                                                <h2 className="text-xl font-semibold text-gray-800">
+                                                    Day {dayData.day}
+                                                </h2>
+                                                <p className="text-indigo-600 font-medium">{dayData.topic}</p>
+                                            </div>
+                                        </div>
+                                        {expandedDay === dayData.day ? <ChevronUp /> : <ChevronDown />}
+                                    </div>
+                                    
+                                    {expandedDay === dayData.day && (
+                                        <div className="px-5 pb-5 bg-gray-50">
+                                            <div className="bg-white rounded-lg p-4 space-y-3">
+                                                {dayData.questions.map((question, index) => (
+                                                    <div key={index} className="flex space-x-3 p-3 hover:bg-indigo-50 rounded-lg transition-colors">
+                                                        <span className="font-semibold text-indigo-600 min-w-[30px]">
+                                                            {index + 1}.
+                                                        </span>
+                                                        <p className="text-gray-700">{question}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="mt-8 bg-white rounded-lg shadow-md p-6">
+                            <h3 className="text-xl font-semibold text-gray-800 mb-3">Instructions for Students:</h3>
+                            <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                <li>Complete all 20 questions for each day</li>
+                                <li>Practice coding on your computer, don't just read</li>
+                                <li>Mark day as complete after finishing all questions</li>
+                                <li>Review previous concepts regularly</li>
+                                <li>Try to solve questions independently before seeking help</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<PythonPracticeQuestions />, document.getElementById('root'));
+    </script>
+</body>
+</html>
